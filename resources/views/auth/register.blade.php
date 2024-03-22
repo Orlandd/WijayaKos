@@ -100,6 +100,11 @@
                         class="w-full h-8 px-4 border-2 mb-5 rounded-full border-orange-400 focus:shadow-lg transition-all ease-in-out duration-300"
                         placeholder="Your email ...">
 
+                    <label for="nohp" class="">Nomor Telepon</label>
+                    <input type="text" name="nohp" id="nohp"
+                        class="w-full h-8 px-4 border-2 mb-5 rounded-full border-orange-400 focus:shadow-lg transition-all ease-in-out duration-300"
+                        placeholder="Your telepon number ...">
+
                     <label for="password" class="">Password</label>
                     <input type="password" name="password" id="password"
                         class="w-full h-8 px-4 border-2 mb-5 rounded-full border-orange-400 focus:shadow-lg transition-all ease-in-out duration-300">
