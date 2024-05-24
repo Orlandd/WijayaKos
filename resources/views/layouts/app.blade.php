@@ -78,7 +78,7 @@
                 </div>
             </div>
         </nav> --}}
-
+        {{-- 
         <header
             class="flex sticky top-0 flex-wrap sm:justify-start sm:flex-nowrap z-50 w-full bg-white text-sm py-4 dark:bg-gray-800 shadow-md">
             <nav class="max-w-[85rem] w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between"
@@ -138,7 +138,7 @@
                                 <a href="{{ route('register') }}"
                                     class="px-7 py-1 bg-gray-800 rounded-xl text-white">Register</a>
                             </div> --}}
-                        @else
+        {{-- @else
                             <div class="py-1">
                                 <div class="hs-dropdown relative inline-flex">
                                     <button id="hs-dropdown-basic" type="button"
@@ -172,9 +172,101 @@
                     </div>
                 </div>
             </nav>
+        </header> --}}
+
+        <header
+            class="flex sticky top-0  flex-wrap sm:justify-start sm:flex-nowrap z-50 w-full bg-white border-b border-gray-200 text-sm py-3 sm:py-0">
+            <nav class="relative max-w-[85rem] w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8"
+                aria-label="Global">
+                <div class="flex items-center justify-between">
+                    <a class="navbar-brand" href="/">
+                        <img src="/storage/img/3.png" alt="Logo"
+                            class="h-6 sm:h-8 max-h-8 max-w-full object-contain">
+                    </a>
+                    <div class="sm:hidden">
+                        <button type="button"
+                            class="hs-collapse-toggle size-9 flex justify-center items-center text-sm font-semibold rounded-lg border border-gray-200 text-gray-800 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none"
+                            data-hs-collapse="#navbar-collapse-with-animation"
+                            aria-controls="navbar-collapse-with-animation" aria-label="Toggle navigation">
+                            <svg class="hs-collapse-open:hidden size-4" width="16" height="16"
+                                fill="currentColor" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+                            </svg>
+                            <svg class="hs-collapse-open:block flex-shrink-0 hidden size-4" width="16"
+                                height="16" fill="currentColor" viewBox="0 0 16 16">
+                                <path
+                                    d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div id="navbar-collapse-with-animation"
+                    class="hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow sm:block">
+                    <div
+                        class="flex flex-col gap-y-4 gap-x-0 mt-5 sm:flex-row sm:items-center sm:justify-end sm:gap-y-0 sm:gap-x-7 sm:mt-0 sm:ps-7">
+                        <a class="font-medium text-gray-500 hover:text-gray-400 sm:py-6" href="/home">Home</a>
+                        <a class="font-medium text-gray-500 hover:text-gray-400 sm:py-6" href="/rooms">Rooms</a>
+                        <a class="font-medium text-gray-500 hover:text-gray-400 sm:py-6" href="/location">Location</a>
+                        <a class="font-medium text-gray-500 hover:text-gray-400 sm:py-6" href="#">Help</a>
+
+                        @guest
+                            <a class="flex items-center gap-x-2 font-medium text-gray-500 hover:text-teal-600 sm:border-s sm:border-gray-300 sm:my-6 sm:ps-6"
+                                href="/login">
+                                <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="16"
+                                    height="16" fill="currentColor" viewBox="0 0 16 16">
+                                    <path
+                                        d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
+                                </svg>
+                                Log in
+                            </a>
+                            {{-- <div class="py-2">
+                                <a href="{{ route('register') }}"
+                                    class="px-7 py-1 bg-gray-800 rounded-xl text-white">Register</a>
+                            </div> --}}
+                        @else
+                            <div class="py-1">
+                                <div class="hs-dropdown relative inline-flex">
+                                    <button id="hs-dropdown-basic" type="button"
+                                        class="hs-dropdown-toggle py-1 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+                                        {{ Auth::user()->name }}
+                                        <svg class="hs-dropdown-open:rotate-180 size-4 text-gray-600"
+                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                            stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="m6 9 6 6 6-6" />
+                                        </svg>
+                                    </button>
+
+                                    <div class="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 w-56 hidden z-10 mt-2 min-w-60 bg-white shadow-md rounded-lg p-2 dark:bg-gray-800 dark:border dark:border-gray-700 dark:divide-gray-700"
+                                        aria-labelledby="hs-dropdown-basic">
+                                        <a href="/profile"
+                                            class="flex w-full items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:bg-gray-700">
+                                            My Profile
+                                        </a>
+                                        <hr>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                            <button type="submit"
+                                                class="flex w-full items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:bg-gray-700">
+                                                Logout
+                                            </button>
+                                        </form>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        @endguest
+
+
+
+                    </div>
+                </div>
+            </nav>
         </header>
 
-        <main class="py-4">
+        <main class="">
             @yield('content')
         </main>
     </div>
