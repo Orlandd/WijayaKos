@@ -6,16 +6,17 @@
             <div class="card bg-white shadow-md rounded-lg overflow-hidden sm:min-w-60 md:min-w-80">
                 <img src="/storage/img/kamar.jpg" class="card-img-top h-52 w-full object-cover" alt="...">
                 <div class="p-4">
-                    <p class="card-title font-semibold text-lg">{{ $room->name }}</p>
-                    <p class="card-text text-gray-600">{{ $room->dorms->lokasi }}</p>
+                    <p class="card-title font-semibold text-lg">{{ $booking->rooms->name }}</p>
+                    {{-- <p class="card-text text-gray-600">{{ $booking-> }}</p> --}}
                     <p class="card-text text-gray-600">Time : <span id="long">1</span> month</p>
                     <p class="card-price font-semibold text-gray-700 pt-2" id="harga">Rp
-                        {{ number_format($room->harga) }},00
+                        {{ number_format($booking->rooms->harga) }},00
                     </p>
 
                     <br>
                     <hr>
-                    <p class="text-center">{{ date('d-m-Y') }}</p>
+                    <p class="text-center">Start : {{ $bookingApprove->akhir }}</p>
+                    {{-- <p class="text-center">{{ date('d-m-Y') }}</p> --}}
                 </div>
             </div>
 
@@ -31,15 +32,15 @@
                 <input type="email" placeholder="Email" name="email"
                     class="border-2 border-yellow-500 rounded-full px-4 py-2 w-full mb-4"
                     value="{{ auth()->user()->email }}" disabled>
-                <form action="/booking" method="post" class="mx-auto" enctype="multipart/form-data">
+                <form action="/profile/extend" method="post" class="mx-auto" enctype="multipart/form-data">
                     @csrf
                     <input type="text" id="total" placeholder="Name" name="harga"
-                        class="border-2 border-yellow-500 rounded-full px-4 py-2 w-full mb-4" value="{{ $room->harga }}"
-                        hidden>
+                        class="border-2 border-yellow-500 rounded-full px-4 py-2 w-full mb-4"
+                        value="{{ $booking->rooms->harga }}" hidden>
 
                     <input type="text" id="kamar" placeholder="Name" name="kamar"
-                        class="border-2 border-yellow-500 rounded-full px-4 py-2 w-full mb-4" value="{{ $room->id }}"
-                        hidden>
+                        class="border-2 border-yellow-500 rounded-full px-4 py-2 w-full mb-4"
+                        value="{{ $booking->rooms->id }}" hidden>
 
                     <hr>
                     <label for="time">How Long? (in month)</label>
@@ -70,8 +71,8 @@
                 });
 
 
-                $('#harga').text(formatter.format({{ $room->harga }} * time));
-                $('#total').val({{ $room->harga }} * time);
+                $('#harga').text(formatter.format({{ $booking->rooms->harga }} * time));
+                $('#total').val({{ $booking->rooms->harga }} * time);
                 $('#long').text(time);
 
             });

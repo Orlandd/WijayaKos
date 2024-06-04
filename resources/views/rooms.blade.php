@@ -17,17 +17,20 @@
         </form>
 
         <div id="kamar" class="mx-5 pt-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <a href="/room"
-                class="card transition-transform transform hover:scale-105 bg-white shadow-md rounded-lg overflow-hidden">
-                <img src="/storage/img/kamar.jpg" class="card-img-top h-52 w-full object-cover" alt="...">
-                <div class="p-4">
-                    <p class="card-title font-semibold text-lg">Judul Kamar</p>
-                    <p class="card-text text-gray-600">Some quick example text to build on the card title and make up the
-                        bulk
-                        of the card's content.</p>
-                    <p class="card-price font-semibold text-gray-700">1.500.000 / month</p>
-                </div>
-            </a>
+            @foreach ($rooms as $room)
+                <a href="/room/{{ $room->id }}"
+                    class="card transition-transform transform hover:scale-105 bg-white shadow-md rounded-lg overflow-hidden">
+                    <img src="/storage/rooms/{{ $room->roomImages[0]->image }}"
+                        class="card-img-top h-52 w-full object-cover" alt="...">
+                    <div class="p-4">
+                        <p class="card-title font-semibold text-lg">{{ $room->name }}</p>
+                        <p class="card-title font-normal text-slate-600 text-lg">{{ $room->dorms->nama }}</p>
+                        <p class="card-text text-gray-600">{{ $room->deskripsi }}</p>
+                        <p class="card-price font-semibold text-gray-700">{{ number_format($room->harga) }} / month</p>
+                    </div>
+                </a>
+            @endforeach
+
 
             <a href="/room"
                 class="card transition-transform transform hover:scale-105 bg-white shadow-md rounded-lg overflow-hidden">

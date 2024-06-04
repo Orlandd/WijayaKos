@@ -133,7 +133,7 @@
                             @csrf
                             <div>
                                 <label for="name" class="block text-sm font-bold text-teal-500">Name</label>
-                                <input type="text" id="name"
+                                <input type="text" name="name" id="name"
                                     class="mt-1 block w-full border-2 border-orange-300 rounded-full p-2 italic"
                                     placeholder="eg. Ronald Maxime">
                             </div>
@@ -146,20 +146,20 @@
                             <div>
                                 <label for="email" class="block text-sm font-bold text-teal-500">Email
                                     address</label>
-                                <input type="email" id="email"
+                                <input type="email" name="email" id="email"
                                     class="mt-1 block w-full border-2 border-orange-300 rounded-full p-2 italic"
                                     placeholder="eg.ronaldmax6378@gmail.com">
                             </div>
                             <div>
                                 <label for="password" class="block text-sm font-bold text-teal-500">Password</label>
-                                <input type="password" id="password"
+                                <input type="password" id="password" name="password"
                                     class="mt-1 block w-full border-2 border-orange-300 rounded-full p-2 italic"
                                     placeholder="eg.rbskl827T">
                             </div>
                             <div>
                                 <label for="password-confirm" class="block text-sm font-bold text-teal-500">Password
                                     Confirm</label>
-                                <input type="password-confirm" id="password-confirm"
+                                <input type="password" name="password_confirmation" id="password"
                                     class="mt-1 block w-full border-2 border-orange-300 rounded-full p-2 italic"
                                     placeholder="eg.rbskl827T">
                             </div>

@@ -25,15 +25,24 @@
 
         <div id="history" class="m-5 md:m-10 flex-grow">
             <div id="kamar" class="mx-5  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="card bg-white transition-transform hover:scale-105 shadow-md rounded-lg overflow-hidden">
-                    <img src="/storage/img/kamar.jpg" class="card-img-top h-52 w-full object-cover" alt="...">
-                    <div class="p-4">
-                        <p class="card-title font-semibold text-lg">Judul Kamar</p>
-                        <p class="card-text text-gray-600">Some quick example text to build on the card title and make up
-                            the bulk of the card's content.</p>
-                        <p class="card-price font-semibold text-gray-700">1.500.000 / month</p>
+
+                @foreach ($bookings as $booking)
+                    <div class="card bg-white transition-transform hover:scale-105 shadow-md rounded-lg overflow-hidden">
+                        <img src="/storage/img/kamar.jpg" class="card-img-top h-52 w-full object-cover" alt="...">
+                        <div class="p-4">
+                            <p class="card-title font-semibold text-lg">{{ $booking->rooms->name }}</p>
+                            <p class="card-title font-normal text-lg">{{ $booking->rooms->dorms->lokasi }}</p>
+                            <hr class="my-3">
+                            <p class="card-text text-gray-600">{{ $booking->mulai }} - {{ $booking->akhir }}</p>
+                            <p class="card-text text-gray-600">Status : {{ $booking->status }}</p>
+                            <hr class="my-3">
+                            <p class="card-price font-semibold text-gray-700">Rp
+                                {{ number_format($booking->rooms->harga) }},00 / month</p>
+                        </div>
                     </div>
-                </div>
+                @endforeach
+
+
                 <div class="card bg-white transition-transform hover:scale-105 shadow-md rounded-lg overflow-hidden">
                     <img src="/storage/img/kamar.jpg" class="card-img-top h-52 w-full object-cover" alt="...">
                     <div class="p-4">
@@ -76,5 +85,39 @@
                 </div>
             </div>
         </div>
-    </div>
-@endsection
+
+        <hr class="border-2 w-full">
+        <h1 class="text-3xl font-medium mt-3">My Room</h1>
+
+        <div id="rooms" class="m-5 md:m-10 ">
+            <div id="room" class="mx-5  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                @foreach ($rooms as $room)
+                    <div class="card bg-white transition-transform hover:scale-105 shadow-md rounded-lg overflow-hidden">
+                        <img src="/storage/img/kamar.jpg" class="card-img-top h-52 w-full object-cover" alt="...">
+                        <div class="p-4">
+                            <p class="card-title font-semibold text-lg">{{ $room->name }}</p>
+                            <p class="card-title font-normal text-lg">{{ $room->dorms->nama }}</p>
+                            <p class="card-title font-normal text-lg">{{ $room->dorms->lokasi }}</p>
+                            <hr class="my-3">
+                            <p class="card-text text-gray-600">End : {{ $bookingApprove->akhir }}</p>
+                            <hr class="my-3">
+                            <p class="card-price font-semibold text-gray-700">Rp
+                                {{ number_format($booking->rooms->harga) }},00 / month</p>
+                            <br>
+                            <a href="/profile/extend/{{ $room->id }}"
+                                class="bg-teal-500 text-white font-semibold py-2 px-6 rounded-full mt-3">Extend</a>
+                        </div>
+                    </div>
+                @endforeach
+                <div class="card bg-white transition-transform hover:scale-105 shadow-md rounded-lg overflow-hidden">
+                    <img src="/storage/img/kamar.jpg" class="card-img-top h-52 w-full object-cover" alt="...">
+                    <div class="p-4">
+                        <p class="card-title font-semibold text-lg">Judul Kamar</p>
+                        <p class="card-text text-gray-600">Some quick example text to build on the card title and make up
+                            the bulk of the card's content.</p>
+                        <p class="card-price font-semibold text-gray-700">1.500.000 / month</p>
+                    </div>
+                </div>
+            </div>
+        @endsection
