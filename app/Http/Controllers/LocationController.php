@@ -13,7 +13,6 @@ class LocationController extends Controller
      */
     public function index()
     {
-
         return view('dashboard.locations.index', [
             'locations' => Location::all(),
         ]);
@@ -64,7 +63,9 @@ class LocationController extends Controller
      */
     public function edit(Location $location)
     {
-        //
+        return view('dashboard.locations.edit', [
+            'location' => $location,
+        ]);
     }
 
     /**
@@ -72,7 +73,20 @@ class LocationController extends Controller
      */
     public function update(UpdateLocationRequest $request, Location $location)
     {
-        //
+        $request->validate([
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:5048',
+        ]);
+
+        if ($request->hasFile('image')) {
+            $imageName = $request->nama . '.' . $request->image->extension();
+            $request->image->move(public_path('storage/locations'), $imageName);
+            $location->image = $imageName;
+        }
+
+        $location->nama = $request->nama;
+        $location->save();
+
+        return redirect("/dashboard/locations")->with("status", 'Location has been updated!');
     }
 
     /**
@@ -80,6 +94,7 @@ class LocationController extends Controller
      */
     public function destroy(Location $location)
     {
-        //
+        $location->delete();
+        return redirect("/dashboard/locations")->with("status", 'Location has been deleted!');
     }
 }

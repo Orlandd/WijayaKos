@@ -26,14 +26,11 @@
 
 
     <section class="container mx-auto px-3 mb-7">
-        <form action="/dashboard/places/{{ $location->id }}" method="post" enctype="multipart/form-data">
+        <form action="/dashboard/locations/{{ $location->id }}" method="post" enctype="multipart/form-data">
             @method('PUT')
             @csrf
             <label for="nama">Name</label><br>
             <input type="text" name="nama" id="nama" value="{{ $location->nama }}"
-                class="rounded-lg py-2 px-3 mb-3 border-gray-200 border-2"><br>
-            <label for="address">Adress</label><br>
-            <input type="text" name="address" id="address" value="{{ $location->lokasi }}"
                 class="rounded-lg py-2 px-3 mb-3 border-gray-200 border-2"><br>
             <label for="image">Image</label><br>
             <input type="file" name="image" id="image"
