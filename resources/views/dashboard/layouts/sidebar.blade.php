@@ -326,10 +326,14 @@
                 </a></li>
             <hr>
             <li>
-                <a class="flex items-center gap-x-3.5 py-2 px-2.5 bg-red-100 text-sm text-gray-700 rounded-lg hover:bg-red-200 dark:bg-neutral-700 dark:text-white"
-                    href="/signout">Logout</a>
-                </a>
-                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                    <button type="submit"
+                        class="flex w-full items-center gap-x-3.5 py-2 px-2.5 bg-red-100 text-sm text-gray-700 rounded-lg hover:bg-red-200 dark:bg-neutral-700 dark:text-white">
+                        Logout
+                    </button>
+                </form>
+
             </li>
         </ul>
     </nav>

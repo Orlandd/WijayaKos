@@ -33,7 +33,6 @@ class BookingController extends Controller
     {
         // dd(auth()->user());
 
-
         $user = [
             'name' => auth()->user()->name,
             'email' => auth()->user()->email,

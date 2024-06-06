@@ -9,9 +9,9 @@
             <a href=""><button
                     class="bg-teal-500 transition-transform transform hover:scale-105 hover:bg-teal-600 text-white font-bold py-2 px-6 rounded-full mt-3">Putri</button></a>
         </div>
-        <form class="flex wfull m-5 pt-2" role="search">
-            <input class="form-control border-2 w-56 border-orange-300 rounded-full p-2 md:w-1/2 " type="search"
-                placeholder="Search" {{-- aria-label="Search"> --}}>
+        <form class="flex wfull m-5 pt-2" role="search" method="GET">
+            <input class="form-control border-2 w-56 border-orange-300 rounded-full p-2 md:w-1/2 " id="search"
+                type="search" placeholder="Search" {{-- aria-label="Search"> --}}>
             <button class="btn bg-teal-500 text-white font-bold rounded-full py-2 px-6 ml-2 hover:bg-teal-600"
                 type="submit">Search</button>
         </form>
@@ -133,4 +133,59 @@
     <footer class="bg-teal-500 text-white py-20  text-center">
         <a href="" class="text-decoration-none text-white hover:text-teal-100">Contact Us</a>
     </footer>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+        crossorigin="anonymous"></script>
+
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $(document).ready(function() {
+            $('#search').on('keyup', function() {
+                let query = $(this).val();
+                if (query.length > 0) { // Tambahkan pengecekan agar tidak mengirim request kosong
+                    $.ajax({
+                        url: `/rooms/search/${query}`,
+                        type: 'GET',
+                        success: function(data) {
+                            //console.log(data[0].dorms); // Log data yang diterima dari server
+                            $('#kamar').empty();
+
+                            let html = '';
+                            if (data.length > 0) {
+                                $.each(data, function(index, room) {
+                                    let roomImage = room.room_images && room.room_images
+                                        .length > 0 ? room.room_images[0].image :
+                                        ''; // Sesuaikan dengan nama properti yang diberikan oleh server
+                                    $('#kamar').append(`
+                                        <a href="/room/${room.id}"
+                                            class="card transition-transform transform hover:scale-105 bg-white shadow-md rounded-lg overflow-hidden">
+                                            <img src="/storage/rooms/${roomImage}"
+                                                class="card-img-top h-52 w-full object-cover" alt="...">
+                                            <div class="p-4">
+                                                <p class="card-title font-semibold text-lg">${room.name}</p>
+                                                <p class="card-title font-normal text-slate-600 text-lg">${room.dorms.nama}</p> <!-- Sesuaikan dengan nama properti yang diberikan oleh server -->
+                                                <p class="card-text text-gray-600">${room.deskripsi}</p>
+                                                <p class="card-price font-semibold text-gray-700">${room.harga} / month</p>
+                                            </div>
+                                        </a>
+                                    `);
+                                });
+
+                            } else {
+                                $('#kamar').append(
+                                    /*HTML*/
+                                    `<h1 class="text-4xl text-center">Data Not Found</h1>`
+                                ); // Pesan jika data kosong
+                            }
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 @endsection

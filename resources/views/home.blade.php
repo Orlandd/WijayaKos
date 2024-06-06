@@ -24,13 +24,17 @@
         <div class="container mx-auto px-4">
             <h2 class="text-2xl font-bold text-teal-500 mb-6">FACILITY</h2>
             <div class="flex flex-wrap gap-4 justify-center">
-                <div
-                    class="w-full sm:w-1/2 md:w-1/5 bg-white shadow-md rounded-lg overflow-hidden transform transition-transform hover:scale-105">
-                    <img src="/storage/gambar/kos2.jpeg" class="w-full h-40 object-cover" alt="Garasi">
-                    <div class="text-center p-4">
-                        <h5 class="font-semibold">Garasi</h5>
+                @foreach ($facilities as $facility)
+                    <div
+                        class="w-full sm:w-1/2 md:w-1/5 bg-white shadow-md rounded-lg overflow-hidden transform transition-transform hover:scale-105">
+                        <img src="/storage/facilities/{{ $facility->image }}" class="w-full h-40 object-cover"
+                            alt="Garasi">
+                        <div class="text-center p-4">
+                            <h5 class="font-semibold">{{ $facility->nama }}</h5>
+                        </div>
                     </div>
-                </div>
+                @endforeach
+
                 <div
                     class="w-full sm:w-1/2 md:w-1/5 bg-white shadow-md rounded-lg overflow-hidden transform transition-transform hover:scale-105">
                     <img src="/storage/gambar/kos2.jpeg" class="w-full h-40 object-cover" alt="Bed">
@@ -59,18 +63,21 @@
         <div class="container mx-auto px-4 mt-8">
             <h2 class="text-2xl font-bold text-teal-500 mb-6">ROOM</h2>
             <div class="grid grid-cols-2 gap-4 lg:grid-cols-4">
-                <div
-                    class="w-full md:full bg-white shadow-md rounded-lg overflow-hidden transform transition-transform hover:scale-105">
-                    <img src="/storage/gambar/kos1.jpeg" class="w-full h-40 object-cover" alt="...">
-                    <div class="p-4">
-                        <h5 class="font-semibold">Judul Kamar</h5>
-                        <p class="text-gray-600">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
+                @foreach ($rooms as $room)
+                    <div
+                        class="w-full md:full bg-white shadow-md rounded-lg overflow-hidden transform transition-transform hover:scale-105">
+                        <img src="/storage/rooms/{{ $room->roomImages[0]->image }}" class="w-full h-40 object-cover"
+                            alt="...">
+                        <div class="p-4">
+                            <p class="card-title font-normal text-slate-600 text-lg">{{ $room->dorms->nama }}</p>
+                            <p class="card-text text-gray-600">{{ $room->deskripsi }}</p>
+                        </div>
+                        <div class="border-t p-4">
+                            <span class="font-semibold">{{ number_format($room->harga) }} / month</span>
+                        </div>
                     </div>
-                    <div class="border-t p-4">
-                        <span class="font-semibold">1.500.000 / month</span>
-                    </div>
-                </div>
+                @endforeach
+
                 <div
                     class="w-full md:w-full bg-white shadow-md rounded-lg overflow-hidden transform transition-transform hover:scale-105">
                     <img src="/storage/gambar/kos1.jpeg" class="w-full h-40 object-cover" alt="...">
@@ -123,13 +130,17 @@
         <div class="container mx-auto px-4 my-8">
             <h2 class="text-2xl font-bold text-teal-500 mb-6 text-left">FAMOUS LOCATION</h2>
             <div class="flex flex-wrap justify-center gap-8">
-                <div
-                    class="relative w-[306px] h-[178px] rounded-2xl shadow overflow-hidden transform transition-transform hover:scale-105">
-                    <img src="/storage/gambar/jkt.jpeg" class="w-full h-full object-cover rounded-2xl" alt="Jakarta">
-                    <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                        <h5 class="text-white text-[40px] font-bold">JAKARTA</h5>
+                @foreach ($locations as $location)
+                    <div
+                        class="relative w-[306px] h-[178px] rounded-2xl shadow overflow-hidden transform transition-transform hover:scale-105">
+                        <img src="/storage/locations/{{ $location->image }}" class="w-full h-full object-cover rounded-2xl"
+                            alt="Jakarta">
+                        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                            <h5 class="text-white text-[40px] font-bold">{{ $location->nama }}</h5>
+                        </div>
                     </div>
-                </div>
+                @endforeach
+
                 <div
                     class="relative w-[306px] h-[178px] rounded-2xl shadow overflow-hidden transform transition-transform hover:scale-105">
                     <img src="/storage/gambar/solo.jpeg" alt="Solo" class="w-full h-full object-cover rounded-2xl">
