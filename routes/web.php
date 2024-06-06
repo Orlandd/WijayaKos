@@ -71,3 +71,4 @@ Route::resource('/dashboard/facilities', FacilityController::class);
 Route::resource('/dashboard/financial-types', FinancialTypeController::class);
 Route::resource('/dashboard/finances', FinanceController::class);
 Route::resource('/dashboard/bookings', BookingController::class);
+

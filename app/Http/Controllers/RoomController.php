@@ -117,6 +117,11 @@ class RoomController extends Controller
     public function edit(Room $room)
     {
         //
+        return view('dashboard.rooms.edit', [
+            'room' => $room,
+            'dorms' => Dorm::all(),
+            'facilities' => Facility::all()
+        ]);
     }
 
     /**
@@ -125,6 +130,66 @@ class RoomController extends Controller
     public function update(UpdateRoomRequest $request, Room $room)
     {
         //
+        $request->validate([
+            'image1' => 'image|mimes:jpeg,png,jpg,gif|max:5048',
+            'image2' => 'image|mimes:jpeg,png,jpg,gif|max:5048',
+            'image3' => 'image|mimes:jpeg,png,jpg,gif|max:5048',
+        ]);
+
+        // Jika ada file gambar baru diunggah, lakukan pemrosesan
+        if ($request->hasFile('image1')) {
+            $imageName1 = $request->nama . '1.' . $request->image1->extension();
+            $request->image1->move(public_path('storage/rooms'), $imageName1);
+
+            // Update gambar pertama pada tabel RoomImage
+            RoomImage::where('room_id', $room->id)->first()->update(['image' => $imageName1]);
+        }
+
+        if ($request->hasFile('image2')) {
+            $imageName2 = $request->nama . '2.' . $request->image2->extension();
+            $request->image2->move(public_path('storage/rooms'), $imageName2);
+
+            // Update gambar kedua pada tabel RoomImage
+            RoomImage::where('room_id', $room->id)->skip(1)->first()->update(['image' => $imageName2]);
+        }
+
+        if ($request->hasFile('image3')) {
+            $imageName3 = $request->nama . '3.' . $request->image3->extension();
+            $request->image3->move(public_path('storage/rooms'), $imageName3);
+
+            // Update gambar ketiga pada tabel RoomImage
+            RoomImage::where('room_id', $room->id)->skip(2)->first()->update(['image' => $imageName3]);
+        }
+
+        // Ambil data dari request
+        $nama = $request->nama;
+        $tipe = $request->jenis;
+        $harga = $request->harga;
+        $deskripsi = $request->deskripsi;
+        $status = 'Available';
+        $dorm = $request->kost;
+
+        // Update data ruangan pada tabel Room
+        $room->update([
+            "name" => $nama,
+            "harga" => $harga,
+            "tipe" => $tipe,
+            "deskripsi" => $deskripsi,
+            "status" => $status,
+            "dorm_id" => $dorm,
+        ]);
+
+        // Hapus semua fasilitas ruangan terkait
+        $room->facilities()->detach();
+
+        // Tambahkan fasilitas baru yang dipilih
+        if ($request->has('facility')) {
+            foreach ($request->facility as $key => $value) {
+                $room->facilities()->attach($value);
+            }
+        }
+
+        return redirect("/dashboard/rooms")->with("status", 'Room has been updated!');
     }
 
     /**
@@ -132,7 +197,8 @@ class RoomController extends Controller
      */
     public function destroy(Room $room)
     {
-        //
+        $room->delete();
+        return redirect("/dashboard/rooms")->with("status", 'Room has been deleted!');
     }
 
     public function detail($id)
