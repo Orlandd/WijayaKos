@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Facility;
 use App\Http\Requests\StoreFacilityRequest;
 use App\Http\Requests\UpdateFacilityRequest;
+use Illuminate\Support\Facades\File;
 
 class FacilityController extends Controller
 {
@@ -31,19 +32,19 @@ class FacilityController extends Controller
      */
     public function store(StoreFacilityRequest $request)
     {
-        // Melakukan validasi terhadap request 
+        // Melakukan validasi terhadap request
         $request->validate([
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:5048',
         ]);
 
-        // Menentukan nama file dan tempat file 
+        // Menentukan nama file dan tempat file
         $imageName = $request->nama . '.' . $request->image->extension();
         $request->image->move(public_path('storage/facilities'), $imageName);
 
-        // inisialisasi variabel 
+        // inisialisasi variabel
         $nama = $request->nama;
 
-        // menambahkan data ke database pada table facilities 
+        // menambahkan data ke database pada table facilities
         Facility::create([
             "nama" => $nama,
             "image" => $imageName,
@@ -66,7 +67,7 @@ class FacilityController extends Controller
      */
     public function edit(Facility $facility)
     {
-        //
+        return view('dashboard.facilities.edit', compact('facility'));
     }
 
     /**
@@ -74,7 +75,20 @@ class FacilityController extends Controller
      */
     public function update(UpdateFacilityRequest $request, Facility $facility)
     {
-        //
+        $request->validate([
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:5048',
+        ]);
+
+        if ($request->hasFile('image')) {
+            $imageName = $request->nama . '.' . $request->image->extension();
+            $request->image->move(public_path('storage/facilities'), $imageName);
+            $facility->image = $imageName;
+        }
+
+        $facility->nama = $request->nama;
+        $facility->save();
+
+        return redirect("/dashboard/facilities")->with("status", 'Facility has been updated!');
     }
 
     /**
@@ -82,6 +96,17 @@ class FacilityController extends Controller
      */
     public function destroy(Facility $facility)
     {
-        //
+        // Check if the image file exists in the storage
+        $imagePath = public_path('storage/facilities/' . $facility->image);
+        if (File::exists($imagePath)) {
+            // Delete the image file
+            File::delete($imagePath);
+        }
+
+        // Delete the facility record from the database
+        $facility->delete();
+
+        // Redirect back to the facilities index page with a success message
+        return redirect("/dashboard/facilities")->with("status", 'Facility has been deleted!');
     }
 }

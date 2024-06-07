@@ -20,11 +20,11 @@
     </section>
 
     <section class="container px-3">
-        <div class=" flex flex-col w-full ">
+        <div class="flex flex-col w-full">
             <div class="m-1.5 overflow-x-auto">
-                <div class="p-1.5  inline-block align-middle">
+                <div class="p-1.5 inline-block align-middle">
                     <div class="overflow-hidden">
-                        <table class=" divide-y divide-gray-200 dark:divide-neutral-700">
+                        <table class="divide-y divide-gray-200 dark:divide-neutral-700">
                             <thead>
                                 <tr>
                                     <th scope="col"
@@ -45,24 +45,15 @@
                                             class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800 dark:text-neutral-200">
                                             {{ $facility->nama }}</td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">
-
-                                            <img class="rounded-lg h-20"src="/storage/facilities/{{ $facility->image }}"
-                                                alt="">
-
-
+                                            <img class="rounded-lg h-20" src="/storage/facilities/{{ $facility->image }}" alt="">
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
+                                            <a href="/dashboard/facilities/{{ $facility->id }}/edit" class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-yellow-600 hover:text-yellow-800 disabled:opacity-50 disabled:pointer-events-none dark:text-yellow-500 dark:hover:text-yellow-400">Update</a>
 
-                                            <a href="/dashboard/places/{{ $facility['id'] }}/edit"
-                                                class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-yellow-600 hover:text-yellow-800 disabled:opacity-50 disabled:pointer-events-none dark:text-yellow-500 dark:hover:text-yellow-400">Update</a>
-
-                                            <form action="/dashboard/places/{{ $facility->id }}" method="post"
-                                                class="inline-flex">
+                                            <form action="/dashboard/facilities/{{ $facility->id }}" method="post" class="inline-flex">
                                                 @method('delete')
                                                 @csrf
-                                                <button type="submit"
-                                                    onclick="return confirm('Are you sure delete {{ $facility->name }}?')"
-                                                    class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400">Delete</button>
+                                                <button type="submit" onclick="return confirm('Are you sure delete {{ $facility->nama }}?')" class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none dark:text-blue-500 dark:hover:text-blue-400">Delete</button>
                                             </form>
                                         </td>
                                     </tr>
