@@ -39,24 +39,24 @@ class DormController extends Controller
     {
         // dd($request);
 
-        // Melakukan validasi terhadap request 
+        // Melakukan validasi terhadap request
         $request->validate([
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:5048',
         ]);
 
-        // Menentukan nama file dan tempat file 
+        // Menentukan nama file dan tempat file
         $imageName = $request->nama . '.' . $request->image->extension();
         $request->image->move(public_path('storage/dorms'), $imageName);
 
 
-        // inisialisasi variabel 
+        // inisialisasi variabel
         $nama = $request->nama;
         $location = $request->location;
         $lokasi = $request->address;
         $jenis = $request->jenis;
         $deskripsi = $request->deskripsi;
 
-        // input ke database table dorms 
+        // input ke database table dorms
         Dorm::create([
             "nama" => $nama,
             "lokasi" => $lokasi,
@@ -67,19 +67,19 @@ class DormController extends Controller
         // mendapatkan data table dorm yang terakhir (yang diinputkan barusan)
         $dorm = Dorm::latest()->get()[0];
 
-        // Menambahkan data ke table dorm_images 
+        // Menambahkan data ke table dorm_images
         DormImage::create([
             "image" => $imageName,
             "dorm_id" => $dorm->id,
         ]);
 
-        // Menambahkan data ke table dorm_locations 
+        // Menambahkan data ke table dorm_locations
         DormLocation::create([
             "dorm_id" => $dorm->id,
             "location_id" => $location,
         ]);
 
-        // kembali ke halaman /dashboard/dorms dengan session 
+        // kembali ke halaman /dashboard/dorms dengan session
         return redirect("/dashboard/dorms")->with("status", 'Dorms has been created!');
     }
 
@@ -90,7 +90,7 @@ class DormController extends Controller
     {
         // dd();
 
-        // menuju ke file view dengan membawa variabel dorm yang berisikan datatabase dorms yang berhubungan dengan table locations, dan image yang id nya sama dengan yang ada di request 
+        // menuju ke file view dengan membawa variabel dorm yang berisikan datatabase dorms yang berhubungan dengan table locations, dan image yang id nya sama dengan yang ada di request
         return view('dashboard.dorms.show', [
             'dorm' => Dorm::with('locations', 'images')->find($dorm->id),
         ]);
@@ -101,7 +101,7 @@ class DormController extends Controller
      */
     public function edit(Dorm $dorm)
     {
-        //
+        return view('dashboard.dorms.edit', [ 'dorm' => $dorm, 'locations' => Location::all(),]);
     }
 
     /**
@@ -109,7 +109,24 @@ class DormController extends Controller
      */
     public function update(UpdateDormRequest $request, Dorm $dorm)
     {
-        //
+        // Meminta Request
+        $request->validate(['image' => 'image|mimes:jpeg,png,jpg,gif|max:5048']);
+
+        //Update data dorm
+        $dorm->update(['nama' => $request->nama, 'location' => $request->location, 'lokasi' => $request->address, 'jenis' => $request->jenis, 'deskripsi' => $request->deskripsi,]);
+
+        //update image dorm
+        if ($request->hasFile('image'))
+        {
+            $imageName = $request->nama . '.' . $request->image->extension();
+            $request->image->move(public_path('storage/dorms'), $imageName);
+
+            $dorm->image()->update(['image' => $imageName]);
+        }
+
+        //Update lokasi dorm
+        $dorm->locations()->sync([$request->location]);
+        return redirect("/dashboard/dorms")->with("status", 'Dorm has been updated!');
     }
 
     /**
@@ -117,6 +134,9 @@ class DormController extends Controller
      */
     public function destroy(Dorm $dorm)
     {
-        //
+        $dorm->images()->delete();
+        $dorm->locations()->detach();
+        $dorm->delete();
+        return redirect("/dashboard/dorms")->with("status", 'Dorm has been deleted!');
     }
 }
