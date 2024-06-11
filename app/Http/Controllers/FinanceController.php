@@ -70,7 +70,9 @@ class FinanceController extends Controller
      */
     public function edit(Finance $finance)
     {
-        //
+        $finance->load('types'); // Load related types
+        $types = FinancialType::all(); // Get all financial types
+        return view('dashboard.finance.edit', compact('finance', 'types'));
     }
 
     /**
@@ -78,7 +80,16 @@ class FinanceController extends Controller
      */
     public function update(UpdateFinanceRequest $request, Finance $finance)
     {
-        //
+        $finance->update([
+            'nama' => $request->nama,
+            'nominal' => $request->nominal,
+            'deskripsi' => $request->deskripsi,
+            'tanggal' => $request->tanggal,
+        ]);
+
+        $finance->types()->sync($request->jenis);
+
+        return redirect("/dashboard/finances")->with("status", 'Report has been updated!');
     }
 
     /**
@@ -86,6 +97,7 @@ class FinanceController extends Controller
      */
     public function destroy(Finance $finance)
     {
-        //
+        $finance->delete();
+        return redirect("/dashboard/finances")->with("status", 'Report has been deleted!');
     }
 }
