@@ -103,7 +103,7 @@ class DormController extends Controller
      */
     public function edit(Dorm $dorm)
     {
-        return view('dashboard.dorms.edit', [ 'dorm' => $dorm, 'locations' => Location::all(),]);
+        return view('dashboard.dorms.update', [ 'dorm' => $dorm, 'locations' => Location::all(),]);
     }
 
     /**
