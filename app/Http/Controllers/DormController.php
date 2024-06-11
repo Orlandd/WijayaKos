@@ -88,7 +88,9 @@ class DormController extends Controller
      */
     public function show(Dorm $dorm)
     {
-        // dd();
+        // untuk tombol ke detail dorm;
+        $dorm->load('locations');
+        return view('dashboard.dorms.detail', compact('dorm'));
 
         // menuju ke file view dengan membawa variabel dorm yang berisikan datatabase dorms yang berhubungan dengan table locations, dan image yang id nya sama dengan yang ada di request
         return view('dashboard.dorms.show', [

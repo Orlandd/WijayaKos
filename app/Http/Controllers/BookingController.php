@@ -60,16 +60,16 @@ class BookingController extends Controller
         // Format tanggal yang baru dan tampilkan
         // dd($tomorrow->format('Y-m-d'));
 
-        // Validasi 
+        // Validasi
         $request->validate([
             'bukti' => 'required|image|mimes:jpeg,png,jpg,gif|max:10048',
         ]);
 
-        // Menentukan nama file dan tempat file 
+        // Menentukan nama file dan tempat file
         $imageName = $today->format('Y-m-d') . '-' . auth()->user()->name . '-' . $request->kamar . '.' . $request->bukti->extension();
         $request->bukti->move(public_path('storage/booking'), $imageName);
 
-        // inisialisasi variabel 
+        // inisialisasi variabel
         $time = $request->time;
         $harga = $request->harga;
         $roomId = $request->kamar;
@@ -96,7 +96,7 @@ class BookingController extends Controller
         $room->status = 'waiting';
         $room->save();
 
-        // kembali ke halaman /profile dengan session 
+        // kembali ke halaman /profile dengan session
         return redirect("/profile")->with("status", 'Location has been created!');
     }
 
@@ -105,7 +105,9 @@ class BookingController extends Controller
      */
     public function show(Booking $booking)
     {
-        //
+        // Memuat relasi 'rooms.dorms' dan 'users'
+        $booking->load(['rooms.dorms', 'users']);
+        return view('dashboard.booking.detail', compact('booking'));
     }
 
     /**
@@ -128,15 +130,15 @@ class BookingController extends Controller
         $booking->status = 'Approve';
         $booking->save();
 
-        // Mendapatkan data tabel rooms sesuai dengan id 
+        // Mendapatkan data tabel rooms sesuai dengan id
         $room = Room::find($booking->room_id);
 
-        // Melakukan update data 
+        // Melakukan update data
         $room->status = 'Booked';
         $room->user_id = auth()->user()->id;
         $room->save();
 
-        // Membuat data baru di table finances 
+        // Membuat data baru di table finances
         Finance::create([
             'nama' => 'Pembayaran|' . $room->name,
             'nominal' => $booking->harga,
@@ -146,11 +148,11 @@ class BookingController extends Controller
             'booking_id' => $booking->id
         ]);
 
-        // mendapatkan data table finances yang terakhir 
+        // mendapatkan data table finances yang terakhir
         $finance = Finance::latest()->get()[0];
 
 
-        // cek jika data di table financial_types 
+        // cek jika data di table financial_types
         if (FinancialType::where('name', 'Payment')->get()) {
             $type = FinancialType::where('name', 'Payment')->get()[0];
 
@@ -162,17 +164,17 @@ class BookingController extends Controller
             return redirect("/dashboard/bookings")->with("status", 'Payment has been aproved!');
         }
 
-        // Jika tidak ada data yang dicari 
+        // Jika tidak ada data yang dicari
 
-        // Membuat data di table financial_types 
+        // Membuat data di table financial_types
         FinancialType::create([
             "name" => 'Payment',
         ]);
 
-        // Mendapatkan data 
+        // Mendapatkan data
         $type = FinancialType::where('name', 'Payment')->get()[0];
 
-        // menambahkan data di table fiancial_relations 
+        // menambahkan data di table fiancial_relations
         FinancialRelation::create([
             'finance_id' => $finance->id,
             'financial_type_id' => $type->id,
