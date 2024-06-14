@@ -32,7 +32,7 @@
             @endforeach
 
 
-            <a href="/room"
+            {{-- <a href="/room"
                 class="card transition-transform transform hover:scale-105 bg-white shadow-md rounded-lg overflow-hidden">
                 <img src="/storage/img/kamar.jpg" class="card-img-top h-52 w-full object-cover" alt="...">
                 <div class="p-4">
@@ -114,7 +114,7 @@
                         of the card's content.</p>
                     <p class="card-price font-semibold text-gray-700">1.500.000 / month</p>
                 </div>
-            </a>
+            </a> --}}
         </div>
 
         <div class="more mx-5 my-6">

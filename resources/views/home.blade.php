@@ -35,7 +35,7 @@
                     </div>
                 @endforeach
 
-                <div
+                {{-- <div
                     class="w-full sm:w-1/2 md:w-1/5 bg-white shadow-md rounded-lg overflow-hidden transform transition-transform hover:scale-105">
                     <img src="/storage/gambar/kos2.jpeg" class="w-full h-40 object-cover" alt="Bed">
                     <div class="text-center p-4">
@@ -55,7 +55,7 @@
                     <div class="text-center p-4">
                         <h5 class="font-semibold">Desk</h5>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
 
@@ -78,7 +78,7 @@
                     </div>
                 @endforeach
 
-                <div
+                {{-- <div
                     class="w-full md:w-full bg-white shadow-md rounded-lg overflow-hidden transform transition-transform hover:scale-105">
                     <img src="/storage/gambar/kos1.jpeg" class="w-full h-40 object-cover" alt="...">
                     <div class="p-4">
@@ -89,8 +89,8 @@
                     <div class="border-t p-4">
                         <span class="font-semibold">1.500.000 / month</span>
                     </div>
-                </div>
-                <div
+                </div> --}}
+                {{-- <div
                     class="w-full md:w-full bg-white shadow-md rounded-lg overflow-hidden transform transition-transform hover:scale-105">
                     <img src="/storage/gambar/kos1.jpeg" class="w-full h-40 object-cover" alt="...">
                     <div class="p-4">
@@ -101,8 +101,8 @@
                     <div class="border-t p-4">
                         <span class="font-semibold">1.500.000 / month</span>
                     </div>
-                </div>
-                <div
+                </div> --}}
+                {{-- <div
                     class="w-full md:w-full bg-white shadow-md rounded-lg overflow-hidden transform transition-transform hover:scale-105">
                     <img src="/storage/gambar/kos1.jpeg" class="w-full h-40 object-cover" alt="...">
                     <div class="p-4">
@@ -113,7 +113,7 @@
                     <div class="border-t p-4">
                         <span class="font-semibold">1.500.000 / month</span>
                     </div>
-                </div>
+                </div> --}}
             </div>
             <div class="flex justify-end mt-6">
                 <a href="/rooms" class="flex items-center text-teal-500 hover:text-teal-600">
@@ -141,7 +141,7 @@
                     </div>
                 @endforeach
 
-                <div
+                {{-- <div
                     class="relative w-[306px] h-[178px] rounded-2xl shadow overflow-hidden transform transition-transform hover:scale-105">
                     <img src="/storage/gambar/solo.jpeg" alt="Solo" class="w-full h-full object-cover rounded-2xl">
                     <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
@@ -168,7 +168,7 @@
                     <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
                         <span class="text-white text-[40px] font-bold">JOGJA</span>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
