@@ -51,7 +51,7 @@
                     <a href="/home"
                         class="px-6 py-3 rounded-full bg-[#2EC4B6] text-white hover:scale-105 hover:shadow-lg hover:shadow-teal-500/25 transition-all ease-in-out">Order
                         Now</a>
-                    <a href="#"
+                    <a href="https://wa.me/6285326829246"
                         class="px-6 py-3 rounded-full bg-[#FFFFFF] border-2 border-[#FF9F1C] hover:scale-105 hover:shadow-lg hover:shadow-orange-500/25 transition-all ease-in-out">Contact
                         Us</a>
                 </div>
