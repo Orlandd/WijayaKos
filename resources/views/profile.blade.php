@@ -52,7 +52,7 @@
                         <p class="card-price font-semibold text-gray-700">1.500.000 / month</p>
                     </div>
                 </div>
-                <div class="card bg-white transition-transform hover:scale-105 shadow-md rounded-lg overflow-hidden">
+                {{-- <div class="card bg-white transition-transform hover:scale-105 shadow-md rounded-lg overflow-hidden">
                     <img src="/storage/img/kamar.jpg" class="card-img-top h-52 w-full object-cover" alt="...">
                     <div class="p-4">
                         <p class="card-title font-semibold text-lg">Judul Kamar</p>
@@ -69,7 +69,7 @@
                             the bulk of the card's content.</p>
                         <p class="card-price font-semibold text-gray-700">1.500.000 / month</p>
                     </div>
-                </div>
+                </div> --}}
             </div>
 
             <div class="more mx-5 my-6">

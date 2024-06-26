@@ -179,7 +179,7 @@
                     <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner rounded-lg shadow-lg">
                             <div class="carousel-item active">
-                                <img src="https://source.unsplash.com/720x1080?real-estate?orientation=portrait"
+                                <img src="/storage/hero/register.jpg"
                                     class="rounded-lg block w-full h-[30vh] md:h-[100vh]  filter brightness-50"
                                     alt="Stage">
                             </div>
