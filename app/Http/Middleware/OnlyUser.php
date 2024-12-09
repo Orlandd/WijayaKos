@@ -17,7 +17,11 @@ class OnlyUser
     public function handle(Request $request, Closure $next): Response
     {
 
-        if (Auth::user()->role != 0 || Auth::guest()) {
+        if (Auth::guest()) {
+            return redirect('/home');
+        }
+
+        if (Auth::user()->role == 1) {
             return redirect('/dashboard');
         }
         return $next($request);

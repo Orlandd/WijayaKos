@@ -7,6 +7,7 @@ use App\Http\Requests\StoreBookingRequest;
 use App\Http\Requests\UpdateBookingRequest;
 use App\Models\Room;
 use App\Http\Controllers\Auth;
+use App\Models\Dorm;
 use App\Models\Finance;
 use App\Models\FinancialRelation;
 use App\Models\FinancialType;
@@ -21,8 +22,10 @@ class BookingController extends Controller
     public function index()
     {
         // dd(Booking::with('rooms.dorms', 'users')->get());
+
         return view('dashboard.booking.index', [
-            'bookings' => Booking::with('rooms.dorms', 'users')->latest()->get()
+            'bookings' => Booking::filter(request(['kost', 'status', 'search']))->latest()->paginate(10),
+            'dorms' => Dorm::all(),
         ]);
     }
 

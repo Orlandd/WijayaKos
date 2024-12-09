@@ -18,9 +18,28 @@ class FinanceController extends Controller
         // dd(Finance::with('types', 'bookings', 'users')->get());
 
         return view('dashboard.finance.index', [
-            'finances' => Finance::with('types', 'users')->get(),
+            'finances' => Finance::with('types', 'users')
+                ->whereHas('types', function ($query) {
+                    $query->where('name', '!=', 'payment');
+                })
+                ->filter(request(['month', 'year', 'type']))->latest()->paginate(10),
+            'types' => FinancialType::where('name', '!=', 'payment')->get()
         ]);
     }
+
+    public function income()
+    {
+        // dd(Finance::with('types', 'bookings', 'users')->get());
+
+        return view('dashboard.finance.income', [
+            'finances' => Finance::with('types', 'users')
+                ->whereHas('types', function ($query) {
+                    $query->where('name', '=', 'payment');
+                })
+                ->filter(request(['month', 'year']))->latest()->paginate(10),
+        ]);
+    }
+
 
     /**
      * Show the form for creating a new resource.

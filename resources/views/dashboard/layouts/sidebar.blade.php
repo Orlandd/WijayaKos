@@ -99,7 +99,7 @@
                         <li class="hs-accordion" id="users-accordion-sub-1">
                             <button type="button"
                                 class="hs-accordion-toggle hs-accordion-active:text-blue-600 hs-accordion-active:hover:bg-transparent w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-300 dark:hs-accordion-active:text-white">
-                                Sub Menu 1
+                                Expenses
 
                                 <svg class="hs-accordion-active:block ms-auto hidden size-4 text-gray-600 group-hover:text-gray-500 dark:text-neutral-400"
                                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -121,20 +121,14 @@
                                 <ul class="pt-2 ps-2">
                                     <li>
                                         <a class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-300"
-                                            href="#">
-                                            Link 1
+                                            href="/dashboard/finances">
+                                            Reports
                                         </a>
                                     </li>
                                     <li>
                                         <a class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-300"
-                                            href="#">
-                                            Link 2
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-300"
-                                            href="#">
-                                            Link 3
+                                            href="/dashboard/financial-types">
+                                            Type
                                         </a>
                                     </li>
                                 </ul>
@@ -143,7 +137,7 @@
                         <li class="hs-accordion" id="users-accordion-sub-2">
                             <button type="button"
                                 class="hs-accordion-toggle hs-accordion-active:text-blue-600 hs-accordion-active:hover:bg-transparent w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-300 dark:hs-accordion-active:text-white">
-                                Sub Menu 2
+                                Income
 
                                 <svg class="hs-accordion-active:block ms-auto hidden size-4 text-gray-600 group-hover:text-gray-500 dark:text-neutral-400"
                                     xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -165,22 +159,11 @@
                                 <ul class="pt-2 ps-2">
                                     <li>
                                         <a class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-300"
-                                            href="#">
-                                            Link 1
+                                            href="/dashboard/income">
+                                            Report
                                         </a>
                                     </li>
-                                    <li>
-                                        <a class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-300"
-                                            href="#">
-                                            Link 2
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-300"
-                                            href="#">
-                                            Link 3
-                                        </a>
-                                    </li>
+
                                 </ul>
                             </div>
                         </li>
@@ -188,7 +171,7 @@
                 </div>
             </li>
 
-            <li class="hs-accordion" id="account-accordion">
+            {{-- <li class="hs-accordion" id="account-accordion">
                 <button type="button"
                     class="hs-accordion-toggle hs-accordion-active:text-blue-600 hs-accordion-active:hover:bg-transparent w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100 dark:bg-neutral-800 dark:hover:bg-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-300 dark:hs-accordion-active:text-white">
                     <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -241,7 +224,7 @@
 
                     </ul>
                 </div>
-            </li>
+            </li> --}}
 
             <li class="hs-accordion" id="projects-accordion">
                 <button type="button"
@@ -295,9 +278,9 @@
                     </ul>
                 </div>
             </li>
-
+            <hr>
             <li><a class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-300"
-                    href="#">
+                    href="/dashboard/occupants">
                     <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                         stroke-linecap="round" stroke-linejoin="round">
@@ -312,9 +295,9 @@
                         <path d="M12 18h.01" />
                         <path d="M16 18h.01" />
                     </svg>
-                    Calendar
+                    Occupants
                 </a></li>
-            <li><a class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-300"
+            {{-- <li><a class="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-300"
                     href="#">
                     <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -323,7 +306,7 @@
                         <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
                     </svg>
                     Documentation
-                </a></li>
+                </a></li> --}}
             <hr>
             <li>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

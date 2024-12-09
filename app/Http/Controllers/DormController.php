@@ -17,8 +17,11 @@ class DormController extends Controller
     public function index()
     {
         // dd(Dorm::with('locations', 'images')->get());
+        // dump(request('search'));
+
         return view('dashboard.dorms.index', [
-            'dorms' => Dorm::with('locations', 'images')->get(),
+            'dorms' => Dorm::filter(request(['location', 'search']))->latest()->paginate(10),
+            'locations' => Location::all(),
         ]);
     }
 
@@ -103,7 +106,7 @@ class DormController extends Controller
      */
     public function edit(Dorm $dorm)
     {
-        return view('dashboard.dorms.update', [ 'dorm' => $dorm, 'locations' => Location::all(),]);
+        return view('dashboard.dorms.update', ['dorm' => $dorm, 'locations' => Location::all(),]);
     }
 
     /**
@@ -118,8 +121,7 @@ class DormController extends Controller
         $dorm->update(['nama' => $request->nama, 'location' => $request->location, 'lokasi' => $request->address, 'jenis' => $request->jenis, 'deskripsi' => $request->deskripsi,]);
 
         //update image dorm
-        if ($request->hasFile('image'))
-        {
+        if ($request->hasFile('image')) {
             $imageName = $request->nama . '.' . $request->image->extension();
             $request->image->move(public_path('storage/dorms'), $imageName);
 

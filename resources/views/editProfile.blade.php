@@ -7,18 +7,18 @@
             <form action="#" method="POST" class="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4"
                 enctype="multipart/form-data">
                 <!-- <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="banner">
-                        Banner Image
-                    </label>
-                    <input class="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="banner" type="file" accept="image/*">
-                </div>
-                <div class="mb-4">
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="profile">
-                        Profile Image
-                    </label>
-                    <input class="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="profile" type="file" accept="image/*">
-                </div> -->
-                <div class="mb-4">
+                                <label class="block text-gray-700 text-sm font-bold mb-2" for="banner">
+                                    Banner Image
+                                </label>
+                                <input class="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="banner" type="file" accept="image/*">
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-gray-700 text-sm font-bold mb-2" for="profile">
+                                    Profile Image
+                                </label>
+                                <input class="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="profile" type="file" accept="image/*">
+                            </div> -->
+                {{-- <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="banner">
                         Banner Image
                     </label>
@@ -29,8 +29,8 @@
                             onclick="document.getElementById('banner').click()">Choose File</button>
                         <span id="banner-filename" class="ml-3 text-gray-700">No file chosen</span>
                     </div>
-                </div>
-                <div class="mb-4">
+                </div> --}}
+                {{-- <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="profile">
                         Profile Image
                     </label>
@@ -41,7 +41,7 @@
                             onclick="document.getElementById('profile').click()">Choose File</button>
                         <span id="profile-filename" class="ml-3 text-gray-700">No file chosen</span>
                     </div>
-                </div>
+                </div> --}}
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
                         Full Name
@@ -66,14 +66,14 @@
                         class="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         id="phone" type="tel" placeholder="Phone Number">
                 </div>
-                <div class="mb-6">
+                {{-- <div class="mb-6">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="address">
                         Address
                     </label>
                     <input
                         class="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         id="address" type="text" placeholder="Address">
-                </div>
+                </div> --}}
                 <div class="flex items-center justify-between">
                     <button
                         class="bg-teal-500 hover:bg-teal-700 mx-auto text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline"

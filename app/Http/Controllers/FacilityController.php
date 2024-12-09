@@ -15,7 +15,7 @@ class FacilityController extends Controller
     public function index()
     {
         return view('dashboard.facilities.index', [
-            'facilities' => Facility::all(),
+            'facilities' => Facility::latest()->paginate(5),
         ]);
     }
 

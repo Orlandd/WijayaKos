@@ -8,6 +8,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Builder;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -46,5 +47,25 @@ class User extends Authenticatable implements MustVerifyEmail
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function occupant()
+    {
+        return $this->hasMany(Booking::class);
+    }
+
+    public function scopeFilter(Builder $query, array $filters): void
+    {
+        $query->when(
+            $filters['kost'] ?? false,
+            fn ($query, $kost) =>
+            $query->whereHas('occupant.rooms.dorms', fn ($query) => $query->where('nama', $kost))
+        );
+
+        $query->when(
+            $filters['search'] ?? false,
+            fn ($query, $search) =>
+            $query->where('name', 'like', '%' . $search . '%')
+        );
     }
 }

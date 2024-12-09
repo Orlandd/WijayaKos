@@ -20,7 +20,8 @@ class RoomController extends Controller
         // dd(Room::with('dorms.locations', 'roomImages')->get());
 
         return view('dashboard.rooms.index', [
-            'rooms' => Room::with('dorms.locations', 'roomImages')->get(),
+            'rooms' => Room::filter(request(['kost']))->latest()->paginate(10),
+            'kost' => Dorm::all(),
         ]);
     }
 

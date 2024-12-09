@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Booking;
+use App\Models\Dorm;
 use App\Models\Room;
 use App\Models\User;
 use DateTime;
@@ -18,6 +19,27 @@ class UserController extends Controller
     {
         return view('dashboard.user.index', [
             'users' => User::all(),
+        ]);
+    }
+
+    public function occupant()
+    {
+        // dd(User::with('occupant.rooms.dorms')
+        //     ->whereHas('occupant.rooms', function ($query) {
+        //         $query->whereNotNull('id');
+        //     })
+        //     ->latest()
+        //     ->paginate(10));
+
+        return view('dashboard.occupants.index', [
+            'occupants' => User::with('occupant.rooms.dorms')
+                ->whereHas('occupant.rooms', function ($query) {
+                    $query->whereNotNull('id');
+                })
+                ->filter(request(['kost', 'search']))
+                ->latest()
+                ->paginate(10),
+            'dorms' => Dorm::all()
         ]);
     }
 

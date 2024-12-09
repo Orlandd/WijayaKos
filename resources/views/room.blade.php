@@ -15,6 +15,7 @@
                 class="w-full h-full object-cover rounded-3xl shadow-lg" alt="...">
         </div>
     </div>
+
     <div class="flex justify-end mt-4 mr-20">
         <a href="#" class="flex items-center text-teal-500 hover:text-teal-600">
             More
@@ -27,34 +28,37 @@
     </div>
 
     <div class="container mx-auto mt-8 px-4 w-full">
-        <div class="flex  md:flex-row w-full">
-            <div class="md:w-2/3 flex flex-col justify-center w-1/2">
+        <div class="flex flex-wrap md:flex-row w-full">
+            <div class="md:w-2/3 flex flex-col justify-center w-full">
                 <p class="text-3xl font-semibold text-gray-500 situration">{{ $room->name }}</p>
+                <p class="text-normal font-semibold text-gray-500 situration">{{ $room->dorms->lokasi }}</p>
             </div>
-            <div class="md:w-1/3 flex mt-4 md:mt-0  justify-center align-middle content-center w-1/2">
-                <p class="text-3xl font-semibold text-gray-400">Rp.{{ number_format($room->harga) }} / month</p>
+            <div class="md:w-1/3 flex mt-4 md:mt-0  justify-center align-middle content-center w-full">
+                <p class="text-xl md:text-3xl font-semibold text-gray-400">Rp.{{ number_format($room->harga) }} / month</p>
             </div>
         </div>
     </div>
 
     <div class="container mx-auto mt-8 px-4">
         <div class="flex flex-col md:flex-row">
-            <div class="md:w-2/3 flex ">
+            <div class="md:w-2/3 flex gap-2">
                 <button type="button"
                     class="mt-1 px-4 py-3 block sm:w-1/2 lg:w-1/4 border-2 bg-teal-500 text-white font-bold rounded-full hover:scale-105 transition-transform">Kost
                     {{ $room->dorms->jenis }}</button>
                 <button type="button"
                     class="mt-1 px-4 py-3 block sm:w-1/2 lg:w-1/4 border-2 border-teal-500 text-teal-500 font-bold rounded-full hover:scale-105 transition-transform">Type
                     {{ $room->tipe }}</button>
+                <button type="button"
+                    class="mt-1 px-4 py-3 block sm:w-1/2 lg:w-1/4 border-2 border-teal-500 text-teal-500 font-bold rounded-full hover:scale-105 transition-transform">{{ $room->dorms->locations[0]->nama }}</button>
             </div>
-            <div class="md:w-1/3 flex justify-end mt-4 md:mt-0 gap-4">
+            {{-- <div class="md:w-1/3 flex justify-end mt-4 md:mt-0 gap-4">
                 <button type="submit"
                     class="mt-1 px-4 py-3 block w-1/2 border-2 border-orange-300 text-teal-500 font-bold rounded-full hover:scale-105 transition-transform">Day
                     of Start</button>
                 <button type="submit"
                     class="mt-1 px-4 py-3 block w-1/2 border-2 border-teal-400 text-orange-300 font-bold rounded-full hover:scale-105 transition-transform">How
                     Long</button>
-            </div>
+            </div> --}}
         </div>
     </div>
 
@@ -67,14 +71,14 @@
                 <a href="/booking/{{ $room->id }}"
                     class="mt-1 px-4 py-3 w-full text-center bg-teal-400 text-white font-bold rounded-full hover:scale-105 transition-transform">Book
                     Now</a>
-                <button type="submit"
-                    class="mt-1 px-4 py-3 block w-full  bg-orange-300 text-white font-bold rounded-full hover:scale-105 transition-transform">Ask
-                    Owner</button>
+                <a href="https://wa.me/6285326829246"
+                    class="mt-1 px-4 py-3 block w-full text-center bg-orange-300 text-white font-bold rounded-full hover:scale-105 transition-transform">Ask
+                    Owner</a>
             </div>
         </div>
     </div>
     <br>
-    <div class="gap-2 mx-auto p-2 max-w-xs h-20 flex justify-center">
+    <div class="gap-2 container mx-auto p-2 max-w-xs h-20 flex justify-start">
         @foreach ($room->facilities as $facility)
             <div class="col-span-1 relative">
                 <img src="/storage/facilities/{{ $facility->image }}" class="w-full h-full object-cover rounded-lg"
@@ -88,7 +92,7 @@
     <br>
     <hr>
     </hr>
-    <div class="container mx-auto px-4 mt-8">
+    {{-- <div class="container mx-auto px-4 mt-8">
         <h2 class="text-2xl font-bold text-teal-500 mb-6">RECOMENDATION</h2>
         <div class="grid grid-cols-2 gap-4 lg:grid-cols-4">
             <div
@@ -150,5 +154,5 @@
                 </svg>
             </a>
         </div>
-    </div>
+    </div> --}}
 @endsection

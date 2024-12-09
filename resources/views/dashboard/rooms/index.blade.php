@@ -16,16 +16,43 @@
     @endif
 
     <section class="container mx-6 my-4">
-        <a href="/dashboard/rooms/create" class="px-4 py-2 bg-sky-500 rounded-full text-white">Add Room</a>
+        <a href="/dashboard/rooms/create" class="px-4 py-2 bg-teal-500 rounded-full text-white">Add Room</a>
+        <div class="hs-dropdown relative inline-flex">
+            <button id="hs-dropdown-default" type="button"
+                class="hs-dropdown-toggle py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-full border border-teal-500 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800">
+                Kost
+                <svg class="hs-dropdown-open:rotate-180 size-4" xmlns="http://www.w3.org/2000/svg" width="24"
+                    height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m6 9 6 6 6-6" />
+                </svg>
+            </button>
+
+            <div class="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden min-w-60 bg-white shadow-md rounded-lg p-2 mt-2 dark:bg-neutral-800 dark:border dark:border-neutral-700 dark:divide-neutral-700 after:h-4 after:absolute after:-bottom-4 after:start-0 after:w-full before:h-4 before:absolute before:-top-4 before:start-0 before:w-full"
+                aria-labelledby="hs-dropdown-default">
+                <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700"
+                    href="/dashboard/rooms">
+                    All
+                </a>
+                @foreach ($kost as $kos)
+                    <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300 dark:focus:bg-neutral-700"
+                        href="/dashboard/rooms?kost={{ $kos->nama }}">
+                        {{ $kos->nama }}
+                    </a>
+                @endforeach
+
+            </div>
+        </div>
     </section>
 
     <section class="container px-3">
         <div class=" flex flex-col w-full ">
             <div class="m-1.5 overflow-x-auto">
                 <div class="p-1.5  inline-block align-middle">
-                    <div class="overflow-hidden">
-                        <table class=" divide-y divide-gray-200 dark:divide-neutral-700">
-                            <thead>
+                    <div class="overflow-hidden border-2 rounded-xl p-2">
+                        <table
+                            class=" divide-y divide-gray-200 dark:divide-neutral-700 rounded-xl overflow-hidden border-b-2 mb-3 ">
+                            <thead class="bg-teal-200 ">
                                 <tr>
                                     <th scope="col"
                                         class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">
@@ -42,9 +69,9 @@
                                     <th scope="col"
                                         class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">
                                         Price</th>
-                                    <th scope="col"
+                                    {{-- <th scope="col"
                                         class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">
-                                        Description</th>
+                                        Description</th> --}}
                                     <th scope="col"
                                         class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">
                                         Status</th>
@@ -74,9 +101,9 @@
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">
                                             Rp.{{ number_format($room->harga) }},00
                                         </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">
+                                        {{-- <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">
                                             {{ $room->deskripsi }}
-                                        </td>
+                                        </td> --}}
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 dark:text-neutral-200">
                                             {{ $room->status }}
                                         </td>
@@ -99,9 +126,11 @@
 
                             </tbody>
                         </table>
+                        {{ $rooms->links() }}
                     </div>
                 </div>
             </div>
         </div>
+
     </section>
 @endsection

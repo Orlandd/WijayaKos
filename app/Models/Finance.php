@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
+
 
 class Finance extends Model
 {
@@ -31,5 +33,47 @@ class Finance extends Model
     public function users()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function scopeFilter(Builder $query, array $filters): void
+    {
+
+
+        $query->when(
+            $filters['month'] ?? false,
+            fn ($query, $month) =>
+            $query
+                ->whereMonth('tanggal', '=', $month)
+
+        );
+
+        $query->when(
+            $filters['year'] ?? false,
+            fn ($query, $year) =>
+            $query
+                ->whereYear('tanggal', '=', $year)
+
+        );
+    }
+
+    public function scopeIncome(Builder $query, array $filters): void
+    {
+
+
+        $query->when(
+            $filters['month'] ?? false,
+            fn ($query, $month) =>
+            $query
+                ->whereMonth('tanggal', '=', $month)
+
+        );
+
+        $query->when(
+            $filters['year'] ?? false,
+            fn ($query, $year) =>
+            $query
+                ->whereYear('tanggal', '=', $year)
+
+        );
     }
 }
